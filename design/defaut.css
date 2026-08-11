@@ -1,0 +1,116 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Roboto" ;
+    overflow-x: hidden;
+}
+
+body {
+    background: url("../assets/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#logo{
+    width : 250px;
+    margin-top : 30px;
+    margin-left : 2%;
+}
+
+#login, #signin{
+    text-align:center;
+    margin : 0 auto;
+    color : whitesmoke; 
+    background: rgba(1, 1, 1, 0.678);
+    width : 550px;
+    padding-top : 30px;
+    padding-bottom : 70px;
+    margin-top: 50px;
+}
+
+#email, #password, #password_retape{
+    width : 350px;
+    height: 50px;
+    padding: 10px;
+    background-color: rgb(49, 49, 49);
+    border : none;
+    margin-bottom : 20px;
+    border-radius: 3px;
+    color : whitesmoke;
+}
+
+#submit, #submit_signin{
+    width : 350px;
+    height: 50px;
+    border-radius: 7px;
+    background : rgb(245, 45, 45);
+    border : none;
+    transition: all ease-in-out 0.2s;
+    color : whitesmoke;
+}
+
+#submit:hover, #submit_singnin:hover{
+    background : rgb(253, 70, 70);
+    transition: all ease-in-out 0.2s;
+}
+
+#submit:active, #submit_singnin:active{
+    background: whitesmoke;
+    transform: scale(1.1);
+}
+
+#remember{
+    margin-top : 15px;
+}
+
+#remember_label{
+    color : rgb(172, 171, 171); 
+}
+
+#login p, #signin p{
+    padding-bottom: 10px;
+    color : rgb(172, 171, 171); 
+}
+
+#login a, #signin a{
+    color : whitesmoke;
+}
+
+#login_form, #signin_form{
+    color : rgb(172, 171, 171);
+    padding-bottom : 60px;
+}
+
+#to_signin, #to_login{
+    margin-bottom : 0; 
+}
+
+#footer{
+    color : rgb(172, 171, 171);
+    background: rgba(1, 1, 1, 0.678);
+    padding : 20px;
+    position : absolute; 
+    bottom : 0px;
+    width : 100%;
+}
+
+#footer h2{
+    margin-left : 40px;
+}
+
+#footer ul{
+    list-style: none;
+}
+
+#footer ul li{
+    display: inline-block;
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+
+#footer ul li:hover{
+    text-decoration: underline;
+}
+
