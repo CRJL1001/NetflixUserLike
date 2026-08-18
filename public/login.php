@@ -13,5 +13,5 @@
         <label id="remember_label" for="remember">Se souvenir de moi</label>
     </form>
     <p id="to_signin">Premiers pas sur Netflix ? </p>
-    <a href="src/signin.php"> Inscrivez-vous</a>
+    <a href="signin.php"> Inscrivez-vous</a>
 </section>

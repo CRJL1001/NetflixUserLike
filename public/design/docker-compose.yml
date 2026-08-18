@@ -1,0 +1,63 @@
+
+services:
+
+  app: #app php
+    build: . 
+    ports:
+      - "8080:80" #map le port 8080 de l'hôte au port 80 du conteneur
+    volumes:
+      - ./:/var/www/html #montre le projet dans le conteneur
+      - ./logs:/var/log/apache2 #montre les logs apache
+    environment: #variables d'environnement
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=netflix
+
+    depends_on:
+      - db 
+    restart: unless-stopped
+
+  db: #app MySQL
+    image: mysql:8.0 
+    ports:
+      - "3306:3306" #mappe le port 3306 de l'hote a celui du conteneur
+    volumes:
+      - mysql_data:/var/lib/mysql #emplacement des données de la bdd
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=netflix
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=dev
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+
+  import-db: #service d'importation de la base de donnée depuis un .bdd
+    image: mysql:8.0
+    depends_on:
+      db:
+        condition: service_healthy #utilise healthcheck
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d #monte le dump SQL
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=netflix
+    command: |
+      sh -c "
+        echo 'Attente de MySQL...'; 
+        until mysql  -uroot -proot -h db -e 'SELECT 1'; do
+          sleep 1; 
+        done;
+        echo 'Importation de bdd...';
+        mysql -uroot -proot -h db netflix < /docker-entrypoint-initdb.d/netflix.sql; 
+        echo 'Bdd importée'
+        "
+
+volumes:
+  mysql_data:

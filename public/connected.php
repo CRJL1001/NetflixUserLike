@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <img id="logo" src="../assets/logoN.png" alt="logo netflix">
+    <img id="logo" src="assets/logoN.png" alt="logo netflix">
     <section id="login">
         <h1>Bienvenue !</h1>
 

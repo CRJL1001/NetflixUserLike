@@ -97,7 +97,7 @@
 </head>
 
 <body>
-    <img id="logo" src="../assets/logoN.png" alt="logo netflix">
+    <img id="logo" src="assets/logoN.png" alt="logo netflix">
 
     <section id="signin">
         <h1>S'inscrire</h1>
@@ -118,7 +118,7 @@
             ?>
 
         <p id="to_login">Déjà sur Netflix? </p>
-        <a href="../index.php"> Connectez-vous</a>
+        <a href="index.php"> Connectez-vous</a>
     </section>
 
     <?php

@@ -1,12 +1,12 @@
 <?php
     session_start();   
     
-    require_once('src/option.php'); 
+    require_once('option.php'); 
 
     //redirection si connecté
 
     if (isset($_SESSION['connect']) && $_SESSION['connect'] == 1){
-        header('location: src/connected.php'); 
+        header('location: connected.php'); 
         exit(); 
     }
 
@@ -27,7 +27,7 @@
         }
 
         //connexion bdd
-        require_once('src/connexion.php');
+        require_once('connexion.php');
 
         //email existe dans bdd ?
 
@@ -56,12 +56,23 @@
 
             //remember 
             if (isset($_POST['remember'])){
-                setcookie('auth', $user['secret'], time() + 364*24*3600, '/', null, false, true); //cookie
+                setcookie(
+                                'auth',
+                                '',
+                                [
+                                    'expires' => time() + 24 * 12 * 3600,
+                                    'path' => '/',
+                                    'domain' => '',
+                                    'secure' => false,
+                                    'httponly' => true,
+                                    'samesite' => 'Lax'
+                                ]
+                            );
 
             }
 
             //redirection
-            header('location: src/connected.php'); 
+            header('location: connected.php'); 
             exit(); 
         }         
     }
@@ -83,8 +94,8 @@
 <body>
     <img id="logo" src="./assets/logoN.png" alt="logo netflix">
     <?php
-            require_once("src/login.php");
-            require_once("src/footer.php");
+            require_once("login.php");
+            require_once("footer.php");
         ?>
 
 </body>
